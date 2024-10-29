@@ -17,10 +17,6 @@
     }
   },
   "forwardPorts": [3000],
-  "postCreateCommand": [
-    "node -v",
-    "npm install",
-    "echo \"MONGO_URI=${MONGO_URI}\" > .env"
-  ],
+  "postCreateCommand": "bash -c 'set -x && npm install && echo \"MONGO_URI=${MONGO_URI}\" > .env && echo \".env file created.\"'",
   "shutdownAction": "none"
 }
