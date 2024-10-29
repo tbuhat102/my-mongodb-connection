@@ -17,3 +17,9 @@ chmod +x find_documents.sh
 ```bash
 curl ifconfig.me
 ```
+
+```bash
+ ipconfig | grep IPv4
+   IPv4 Address. . . . . . . . . . . :x.x.x.x
+
+```
