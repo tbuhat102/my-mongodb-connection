@@ -17,6 +17,13 @@
     }
   },
   "forwardPorts": [3000],
+  "unused_example": [
+    {
+      "remoteEnv": {
+        "MONGO_URI": "${localEnv:MONGO_URI}"
+      }
+    }
+  ],
   "postCreateCommand": ["npm install", "echo 'MONGO_URI=${MONGO_URI}' > .env"],
   "shutdownAction": "none"
 }
