@@ -31,4 +31,4 @@ function saveDocuments() {
 }
 
 // Export the functions
-module.exports = { getDocuments, logDocumentKeys, saveDocuments, readOutput, documents };
+module.exports = { getDocuments,  saveDocuments,  documents };
