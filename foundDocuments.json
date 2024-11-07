@@ -1,6 +1,11 @@
 [
-  { "_id": "67203ec7bdfd8b1981b80432", "name": "John", "age": 30 },
-  { "_id": "67204bec8b1a960a6e699435", "name": "John", "age": 30 },
-  { "_id": "67204f388b1a960a6e699436", "name": "John", "age": 30 },
-  { "_id": "67204f448b1a960a6e699437", "name": "John", "age": 30 }
+  {
+    "_id": "672542561ed78cbc784a703b",
+    "item": "broccoli",
+    "food_group": "vegetables",
+    "price_in_usd": 1.1,
+    "quantity": 50,
+    "calories_per_100g": 34,
+    "organic": true
+  }
 ]

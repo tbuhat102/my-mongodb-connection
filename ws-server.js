@@ -59,3 +59,99 @@ app.get("/find/:database/:collection", async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
+
+// Create (Insert) endpoint
+app.post("/insert/:database/:collection", async (req, res) => {
+    try {
+        const { database, collection } = req.params;
+        const db = client.db(database);
+
+        // check if single or multiple documents
+        if (req.body.document) {
+            // single document insert
+            const result = await db.collection(collection).insertOne(req.body.document);
+            res.status(201).json({
+                message: "Document inserted successfully",
+                insertedId: result.insertedId
+            })
+        }
+        else if (req.body.documents && Array.isArray(req.body.documents)) {
+            // multiple documents insert
+            const result = await db.collection(collection).insertMany(req.body.documents);
+            res.status(201).json({
+                message: `${result.insertedCount} documents inserted`,
+                insertedIds: result.insertedIds
+            })
+        }
+        else {
+            res.status(400).json({
+                error: "Request body must contain either 'document' or 'documents' as array"
+            })
+        }
+
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// Delete endpoint
+app.delete("/delete/:database/:collection/:id", async (req, res) => {
+    try {
+        const { database, collection, id } = req.params;
+        const db = client.db(database);
+
+        const result = await db.collection(collection).deleteOne({ _id: new ObjectId(id) });
+
+        if (result.deletedCount === 1) {
+            res.status(200).send(`Document with ID ${id} deleted successfully.`);
+        } else {
+            res.status(404).send(`Document with ID ${id} not found.`);
+        }
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+// Update endpoint
+app.put("/update/:database/:collection/:id", async (req, res) => {
+    try {
+        const { database, collection, id } = req.params;
+        const { update } = req.body;
+        const db = client.db(database);
+
+        const result = await db.collection(collection).updateOne(
+            { _id: new ObjectId(id) },
+            { $set: update }
+        );
+
+        if (result.matchedCount === 0) {
+            res.status(404).json({ message: "Document not found" });
+        } else {
+            res.status(200).json({
+                message: "Document updated successfully",
+                modifiedCount: result.modifiedCount
+            });
+        }
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// **Start the server after defining routes**
+async function startServer() {
+    try {
+        await client.connect();
+        console.log("Connected to MongoDB");
+
+        // Connect to the REPL's WebSocket server
+        connectToREPL();
+
+        app.listen(port, () => {
+            console.log(`Server running at http://localhost:${port}`);
+        });
+    } catch (err) {
+        console.error("Error connecting to MongoDB:", err);
+        process.exit(1); // Exit the process if the connection fails
+    }
+}
+
+startServer();

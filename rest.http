@@ -22,6 +22,30 @@ Content-Type: application/json
 }
 
 ###
-@id = 672189198b014f93b77159c5
-DELETE {{domain}}:{{port}}/delete/{{database}}/{{collection}}/{{id}}
+@deleteid = 672189198b014f93b77159c5
+DELETE {{domain}}:{{port}}/delete/{{database}}/{{collection}}/{{deleteid}}
 Content-Type: application/json
+
+###
+POST {{{{domain}}}}:{{{{port}}}}/insert/{{{{database}}}}/{{{{collection}}}}
+Content-Type: application/json
+{
+  "documents": [
+    {
+        "item": "Strawberries",
+      "food_group": "fruits",
+      "price_in_usd": 1.1,
+      "quantity": 50,
+      "calories_per_100g": 34,
+      "organic": true},
+    {
+      "item": "peanut butter",
+      "food_group": "nuts",
+      "price_in_usd": 4.50,
+      "quantity": 25,
+      "calories_per_100g": 3000,
+      "organic": false,
+      "brand": "Jiffy!"
+    }
+  ]
+}
