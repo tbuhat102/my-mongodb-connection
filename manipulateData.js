@@ -29,6 +29,13 @@ function saveDocuments() {
         console.error('Error writing JSON file:', err);
     }
 }
+const sortByPrice = (data) => {
+    return [...data].sort((a,b)=>{
+        return a.price_in_usd - b.price_in_usd
+    })
+  }
+  const sortedByPrice = sortByPrice(documents);
+  console.log(sortedByPrice);
 
 // Export the functions
-module.exports = { getDocuments,  saveDocuments,  documents };
+module.exports = { getDocuments,  saveDocuments,  documents, sortByPrice };

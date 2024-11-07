@@ -7,5 +7,14 @@
     "quantity": 50,
     "calories_per_100g": 34,
     "organic": true
+  },
+  {
+    "_id": "67293996a8f9d412facfcad8",
+    "item": "broccoli",
+    "food_group": "vegetables",
+    "price_in_usd": 1.1,
+    "quantity": 50,
+    "calories_per_100g": 34,
+    "organic": true
   }
 ]

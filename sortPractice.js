@@ -86,3 +86,6 @@ const documents =[
     })
   }
   const sortedByPrice = sortByPrice(documents);
+  console.log(sortedByPrice);
+
+  
