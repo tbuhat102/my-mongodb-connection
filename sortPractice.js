@@ -85,3 +85,4 @@ const documents =[
         return a.price_in_usd - b.price_in_usd
     })
   }
+  const sortedByPrice = sortByPrice(documents);
